@@ -292,10 +292,14 @@ def evaluate_answers_gpt4(row) -> pd.DataFrame:
     text = row["text"]
     question = row["question"]
     answer = row["answer"]
-    llm_evaluation_question = row["llm_evaluation_question_gpt4"]
+    llm_evaluation_question_gpt4 = row["llm_evaluation_question_gpt4"]
+    llm_evaluation_question_gpt4_turbo = row["llm_evaluation_question_gpt4_turbo"]
 
     # Check if the question is useful
-    if llm_evaluation_question == "Not useful":
+    if (
+        llm_evaluation_question_gpt4 == "Not useful"
+        or llm_evaluation_question_gpt4_turbo == "Not useful"
+    ):
         return "Not useful"
 
     # Get additional questions
@@ -404,10 +408,14 @@ def evaluate_answers_gpt4_turbo(row) -> pd.DataFrame:
     text = row["text"]
     question = row["question"]
     answer = row["answer"]
-    llm_evaluation_question = row["llm_evaluation_question_gpt4"]
+    llm_evaluation_question_gpt4 = row["llm_evaluation_question_gpt4"]
+    llm_evaluation_question_gpt4_turbo = row["llm_evaluation_question_gpt4_turbo"]
 
     # Check if the question is useful
-    if llm_evaluation_question == "Not useful":
+    if (
+        llm_evaluation_question_gpt4 == "Not useful"
+        or llm_evaluation_question_gpt4_turbo == "Not useful"
+    ):
         return "Not useful"
 
     # Get additional questions
