@@ -551,6 +551,7 @@ run_questions_evaluation = True
 if run_questions_evaluation:
     df = pd.read_csv("dataset.csv")
 
+    # Use GPT4 to evaluate questions
     with ThreadPoolExecutor(num_threads) as executor:
         results = list(
             executor.map(evaluate_questions_gpt4, df.to_dict(orient="records"))
@@ -559,6 +560,7 @@ if run_questions_evaluation:
     for index, result in enumerate(results):
         df.at[index, "llm_evaluation_question_gpt4"] = result
 
+    # Use GPT4 Turbo to evaluate questions
     with ThreadPoolExecutor(num_threads) as executor:
         results = list(
             executor.map(evaluate_questions_gpt4_turbo, df.to_dict(orient="records"))
@@ -574,7 +576,7 @@ run_evaluate_answers = True
 if run_evaluate_answers:
     df = pd.read_csv("dataset_with_q_evaluation.csv")
 
-    # Evaluate answers (GPT4)
+    # Use GPT4 to evaluate answers
     with ThreadPoolExecutor(num_threads) as executor:
         results = list(
             executor.map(evaluate_answers_gpt4, df.to_dict(orient="records"))
@@ -583,7 +585,7 @@ if run_evaluate_answers:
     for index, result in enumerate(results):
         df.at[index, "llm_evaluation_answer_gpt4"] = result
 
-    # Evaluate answers (GPT4 Turbo)
+    # Use GPT4 Turbo to evaluate answers
     with ThreadPoolExecutor(num_threads) as executor:
         results = list(
             executor.map(evaluate_answers_gpt4_turbo, df.to_dict(orient="records"))
