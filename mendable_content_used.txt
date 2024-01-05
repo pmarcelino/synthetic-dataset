@@ -1,0 +1,80 @@
+Creating product copilots - MendableSearch...CTRLKChangelogThemeIntroductionGetting startedInstallationIngesting your docsPrompt CustomizationShowcaseIntegration GuidesProduct copilotsDiscord AI BotSlack AI BotTeams AI BotDocusaurusWordPressAPIOverviewConceptsData IngestionManaging DataConversationChatMessage RatingExport DataComponentsOverviewVanilla JSSearch BarFloating ButtonIn PlaceChat BubbleSDKsPythonIntegration GuidesProduct CopilotsWhat is a product copilot?A product copilot is a Mendable component that is trained to answer questions about your product that take in dynamic application context. It is trained on your product's documentation, and can be deployed anywhere within your App.What's the difference between a copilot and a normal QA AI?Application context. With a copilot you can feed users' details, page details of the application, and other dynamic information to the AI to get personalized answers.Implementing a product copilotBefore install, make sure you have either signed up through our platform or we have provided you with the ANON_KEY. Without the key, you won't be able to setup the search component.1. Importing a componentImport any component into your React application. For this example let's suppose the component is inside the user settings page of an application.npm i @mendable/search@latest
+import { MendableFloatingButton } from "@mendable/search"
+
+const style = { darkMode: false, accentColor: "#123456" }
+
+const floatingButtonStyle = {
+    color: "#fff",
+    backgroundColor: "#123456"
+}
+
+<MendableFloatingButton 
+    anon_key='YOUR_ANON_KEY'
+    style={style}
+    floatingButtonStyle={floatingButtonStyle} />
+2. Passing application contextTo pass in dynamic context to the AI, we can use the context parameter in the component. Here you can send details such as the user settings so the AI is aware of it.import { MendableFloatingButton } from "@mendable/search"
+
+const style = { darkMode: false, accentColor: "#123456" }
+
+const floatingButtonStyle = {
+    color: "#fff",
+    backgroundColor: "#123456"
+}
+
+<MendableFloatingButton 
+    anon_key='YOUR_ANON_KEY'
+    style={style}
+    floatingButtonStyle={floatingButtonStyle}
+    context={
+        "Here are user details to help you answer user's specific questions: "
+        + "user_id: " + user.id,  + "\n"
+        + "user_name: " + user.name,  + "\n"
+        + "user_email: " + user.email,  + "\n"
+        + "project_id: " + project.id,  + "\n"
+    } />
+3. That's it!Play around with the component and see how useful it is for your use case. You can put the component in multiple pages to have multiple additional contexts and leverage page information to get personalized answers.Listening for messagesTracking messagesYou can listen for messages from the Mendable AI by using the onMessageForTracking prop. This prop takes in a function that takes in two parameters: question and answer.const onMessageForTracking = (question, answer, sources) => {
+    // Perform an action
+}
+
+<MendableSearchBar
+    anon_key='YOUR_ANON_KEY'
+    style={style}
+    onMessageForTracking={onMessageForTracking} />
+The question parameter is the question that the user asked and the answer parameter is the answer that the AI generated.Listening for message ratingsYou can listen for message ratings from the Mendable AI by using the onRateClicked prop. This prop takes in a function that takes in 4 parameters: message_id and isLiked, question, answer, sources.const onRateClicked = (isLiked, question, answer, sources) => {
+    // Perform an action
+}
+
+<MendableSearchBar
+    anon_key='YOUR_ANON_KEY'
+    style={style}
+    onMessageForTracking={onMessageForTracking} />
+isLiked is a boolean that is true if the user liked the answer and false if the user disliked the answer. question is the question that the user asked and the answer parameter is the answer that the AI generated. sources is an array of sources URLs that the AI used to generate the answer.Example: Listening to Messages in SlackYou can listen to messages in Slack by using the onMessageForTracking prop. You can then just send the message to a Slack webhook that you can set up at https://api.slack.com/apps.The example below shows it in Next.js, but you can use it in any framework. With a few lines of codes you can receive all your Mendable messages in Slack.
+sendSlackMessage(question, answer){
+    fetch("api/sendSlackMessage",{
+        // ...
+    })
+}
+<MendableSearchBar
+    anon_key={"ANON_KEY"}
+    // triggered on every message sent to the AI 
+    onMessageForTracking={
+      (question, answer) => {
+          // fetch to API/sendSlackMessage
+          sendSlackMessage(question, answer);
+     }}
+/>
+
+  
+// api/sendSlackMessage.ts
+export default async function handler(req, res) {
+    // replace with your webhook URL
+    fetch('https://hooks.slack.com/services/X',
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        text: "New question: " +req.body.text
+      })
+    }
+  );
+}
+Previous← ShowcaseNextDiscord AI Bot →On this pageWhat is a product copilot?What's the difference between a copilot and a normal QA AI?Implementing a product copilot1. Importing a component2. Passing application context3. That's it!Listening for messagesTracking messagesListening for message ratingsExample: Listening to Messages in Slack

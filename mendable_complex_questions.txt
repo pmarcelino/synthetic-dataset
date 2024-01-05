@@ -1,0 +1,33 @@
+Based on the provided information, here are some questions that an end user might ask, along with the functional operations involved in each:
+
+1. **How do I customize the appearance of the MendableFloatingButton to match my application's dark mode theme?**
+   - Functional operations: Filtering (to find the style-related properties), Updating (to change the style properties to match the dark mode theme).
+   - Conceptual understanding: Recognizing which style properties control the theme and color scheme.
+
+2. **Can I track how users interact with the Mendable AI on different pages of my application?**
+   - Functional operations: Aggregation (to collect interaction data from multiple pages), Pathfinding (to determine the flow of user interactions across pages).
+   - Conceptual understanding: Understanding the concept of application context and how it can be used to track user interactions.
+
+3. **How do I ensure that the Mendable AI provides personalized answers based on the user's project details?**
+   - Functional operations: Filtering (to identify user-specific context parameters), Comparison (to match user queries with the relevant context).
+   - Conceptual understanding: Grasping the importance of dynamic context in personalizing AI responses.
+
+4. **What steps are necessary to integrate the MendableFloatingButton into a React application's user settings page?**
+   - Functional operations: Sorting (to organize the steps in the correct order), Temporal operations (to understand the sequence of implementation).
+   - Conceptual understanding: Knowing the prerequisites and the process of importing and configuring a React component.
+
+5. **How can I set up my application to send notifications to a Slack channel whenever a user asks a question to the Mendable AI?**
+   - Functional operations: Logical reasoning (to connect the onMessageForTracking prop with the Slack webhook functionality), Pathfinding (to trace the data flow from the Mendable AI to the Slack API).
+   - Conceptual understanding: Understanding how webhooks work and how to use them to integrate with third-party services like Slack.
+
+6. **Is it possible to collect feedback on the answers provided by the Mendable AI and use it to improve the service?**
+   - Functional operations: Aggregation (to gather feedback data), Filtering (to separate positive from negative feedback), Temporal operations (to analyze feedback over time).
+   - Conceptual understanding: Recognizing the role of user feedback in AI performance and the mechanism for collecting it.
+
+7. **How can I differentiate between liked and disliked answers in the data collected from the Mendable AI's message ratings?**
+   - Functional operations: Filtering (to separate liked from disliked based on the boolean value), Comparison (to analyze the differences in responses).
+   - Conceptual understanding: Knowing how boolean values represent user preferences and how to interpret them in the context of AI-generated answers.
+
+8. **What information do I need to provide to the MendableFloatingButton component to enable context-aware AI responses?**
+   - Functional operations: Aggregation (to compile the necessary user and project details), Filtering (to ensure only relevant context is passed).
+   - Conceptual understanding: Understanding what constitutes application context and how it affects AI responses.
